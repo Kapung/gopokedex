@@ -6,4 +6,5 @@ type Config struct {
 	PokeAPI     pokeapi.Client
 	NextURL     *string
 	PreviousURL *string
+	Caught      map[string]pokeapi.Pokemon
 }

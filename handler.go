@@ -18,13 +18,17 @@ func startProgram(cfg *config.Config) {
 		fmt.Print("Pokedex > ")
 
 		scanner.Scan()
-		command := scanner.Text()
-		command = strings.ToLower(command)
+		input := scanner.Text()
+		parts := strings.Split(input, " ")
+		command := strings.ToLower(parts[0])
+		args := parts[1]
+
 		cmd, ok := cmdMap[command]
+
 		if !ok {
 			fmt.Println("Wrong command")
 			continue
 		}
-		cmd.Callback(cfg)
+		cmd.Callback(cfg, args)
 	}
 }

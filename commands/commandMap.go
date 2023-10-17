@@ -7,13 +7,7 @@ import (
 	"github.com/Kapung/gopokedex/config"
 )
 
-func CommandMap(cfg *config.Config) {
-	/*
-		if cfg.NextURL == nil {
-			fmt.Println("You're already on the last page")
-			return
-		}*/
-
+func CommandMap(cfg *config.Config, args ...string) {
 	r, err := cfg.PokeAPI.PrintLocations(cfg.NextURL)
 
 	if err != nil {

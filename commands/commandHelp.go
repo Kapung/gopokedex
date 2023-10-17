@@ -6,7 +6,7 @@ import (
 	"github.com/Kapung/gopokedex/config"
 )
 
-func CommandHelp(cfg *config.Config) {
+func CommandHelp(cfg *config.Config, args ...string) {
 	commands := GetCommands()
 
 	fmt.Printf("\nWelcome to the Pokedex!\n")

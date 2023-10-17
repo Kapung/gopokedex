@@ -7,7 +7,7 @@ import (
 	"github.com/Kapung/gopokedex/config"
 )
 
-func CommandMapb(cfg *config.Config) {
+func CommandMapb(cfg *config.Config, args ...string) {
 
 	if cfg.PreviousURL == nil {
 		fmt.Println("You're already on the first page")
