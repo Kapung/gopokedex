@@ -1,8 +1,12 @@
 package commands
 
-import "fmt"
+import (
+	"fmt"
 
-func CommandHelp() {
+	"github.com/Kapung/gopokedex/config"
+)
+
+func CommandHelp(cfg *config.Config) {
 	commands := GetCommands()
 
 	fmt.Printf("\nWelcome to the Pokedex!\n")

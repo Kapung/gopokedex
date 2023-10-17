@@ -1,9 +1,11 @@
 package commands
 
+import "github.com/Kapung/gopokedex/config"
+
 type cliCommand struct {
 	name        string
 	description string
-	Callback    func()
+	Callback    func(*config.Config)
 }
 
 func GetCommands() map[string]cliCommand {
