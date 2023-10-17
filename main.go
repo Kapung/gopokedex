@@ -7,11 +7,21 @@ import (
 	"strings"
 
 	"github.com/Kapung/gopokedex/commands"
+	"github.com/Kapung/gopokedex/pokeapi"
 )
+
+type config struct {
+	pokeAPI     pokeapi.Client
+	nextURL     *string
+	previousURL *string
+}
 
 func main() {
 	scanner := bufio.NewScanner((os.Stdin))
-	commands := getCommands()
+	cmdMap := commands.GetCommands()
+	cfg := config{
+		pokeAPI: pokeapi.NewClient(),
+	}
 
 	for {
 		fmt.Print("Pokedex > ")
@@ -19,32 +29,11 @@ func main() {
 		scanner.Scan()
 		command := scanner.Text()
 		command = strings.ToLower(command)
-		cmd, ok := commands[command]
+		cmd, ok := cmdMap[command]
 		if !ok {
 			fmt.Println("Wrong command")
 			continue
 		}
-		cmd.callback()
-	}
-}
-
-type cliCommand struct {
-	name        string
-	description string
-	callback    func()
-}
-
-func getCommands() map[string]cliCommand {
-	return map[string]cliCommand{
-		"help": {
-			name:        "help",
-			description: "Displays a help message",
-			callback:    commands.CommandHelp,
-		},
-		"exit": {
-			name:        "exit",
-			description: "Exit the Pokedex",
-			callback:    commands.CommandExit,
-		},
+		cmd.Callback()
 	}
 }
